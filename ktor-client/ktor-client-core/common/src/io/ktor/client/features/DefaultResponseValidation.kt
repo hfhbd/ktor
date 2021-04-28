@@ -96,7 +96,7 @@ public class ServerResponseException(
     @Deprecated(level = DeprecationLevel.WARNING, message = DEPRECATED_EXCEPTION_CTOR)
     public constructor(response: HttpResponse) : this(response, NO_RESPONSE_TEXT)
 
-    override val message: String? = "Server error(${response.call.request.url}: " +
+    override val message: String? = "Server error(${response.call.request.method} ${response.call.request.url}: " +
         "${response.status}. Text: \"$cachedResponseText\""
 }
 
@@ -111,6 +111,6 @@ public class ClientRequestException(
     @Deprecated(level = DeprecationLevel.WARNING, message = DEPRECATED_EXCEPTION_CTOR)
     public constructor(response: HttpResponse) : this(response, NO_RESPONSE_TEXT)
 
-    override val message: String? = "Client request(${response.call.request.url}) " +
+    override val message: String? = "Client request(${response.call.request.method} ${response.call.request.url}) " +
         "invalid: ${response.status}. Text: \"$cachedResponseText\""
 }
